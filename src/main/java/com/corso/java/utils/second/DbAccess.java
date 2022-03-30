@@ -20,7 +20,6 @@ public class DbAccess implements Db<ResultSet> {
     private final String DB_USER = "root";
     private final String DB__URL = "jdbc:mysql://localhost/jdbc";
 
-
     @Override
     public void readDatabase() throws SQLException {
 

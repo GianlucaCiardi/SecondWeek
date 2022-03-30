@@ -16,11 +16,11 @@ public class Test {
 
         //Thread tn = new Thread(n);
         //tn.start();
-
         t.start();
         t.join();
         n.run();
         //L.info("Fatto!");
+
 
 
 
