@@ -1,49 +1,114 @@
 package com.corso.java.utils.Utils;
 
-import com.corso.java.utils.Utils.DBConstant;
 
 import java.sql.*;
 
+/**
+ * @author: Christian Chiama (c.chiama@silensec.com)
+ * @project-Name: second-week
+ * @date: 30-03-2022
+ * @time: 12:13 min
+ * @file: com.corso.java.db.utils.DBConnection
+ */
+
 public class DBConnection {
 
+    private static ReadProperties readProperties;
+    private static Connection connection;
+    private static Statement statement;
+    private static ResultSet resultSet;
+    private static PreparedStatement preparedStatement;
+    private static LOG L = LOG.getInstance();
 
-    public static void main(String[] args) throws SQLException {
-
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+    /**
+     * make a connection to db and return a statement
+     * example: Statement statement = DBConnection.connect();
+     * @return
+     * @throws SQLException
+     */
+    public static Statement connect() throws SQLException {
         try {
-
-            Class.forName(DBConstant.DB_MYSQL_URL).newInstance();
-            connection = DriverManager.getConnection(DBConstant.DB_URL, DBConstant.DB_USER, DBConstant.DB_PASSWORD);
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(DBConstant.DB_SELECT_STUDENTE);
-            ResultSetMetaData md = resultSet.getMetaData();
-
-            while (resultSet.next()) {
-                for (int i = 1; i <= md.getColumnCount(); i++) {
-                    System.out.println(resultSet.getString(i));
-                }
+            if(statement == null) {
+                readProperties = new ReadProperties();
+                Class.forName(DBConstant.DB_MYSQL_URL).newInstance();
+                connection = DriverManager.getConnection(DBConstant.DB_URL, DBConstant.DB_USER, DBConstant.DB_PASSWORD);//
+                statement = connection.createStatement();
+            }else{
+                L.debug("You have invoked more times DBConnection.connect();");
             }
-
-
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-        } finally {
-            close(resultSet, statement, connection);
+            L.err("SQLException: " + ex.getMessage());
         }
 
+        return statement;
     }
 
-    private static void close(ResultSet resultSet, Statement statement, Connection connection) throws SQLException {
-
+    public static void close() throws SQLException {
         if (resultSet != null)
             resultSet.close();
 
         if (statement != null)
             statement.close();
 
+        if (preparedStatement != null)
+            preparedStatement.close();
+
         if (connection != null)
             connection.close();
+    }
+
+
+
+    public ReadProperties getReadProperties() {
+        return readProperties;
+    }
+
+    public void setReadProperties(ReadProperties readProperties) {
+        this.readProperties = readProperties;
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        DBConnection.connection = connection;
+    }
+
+    public static Statement getStatement() {
+        return statement;
+    }
+
+    public static void setStatement(Statement statement) {
+        DBConnection.statement = statement;
+    }
+
+    public static ResultSet getResultSet() {
+        return resultSet;
+    }
+
+    public static void setResultSet(ResultSet resultSet) {
+        DBConnection.resultSet = resultSet;
+    }
+
+    public static PreparedStatement getPreparedStatement() {
+        return preparedStatement;
+    }
+
+    public static void setPreparedStatement(PreparedStatement preparedStatement) {
+        DBConnection.preparedStatement = preparedStatement;
+    }
+
+    public static LOG getL() {
+        return L;
+    }
+
+    public static void setL(LOG l) {
+        L = l;
+    }
+
+
+    public static void main(String[] args) throws SQLException {
+        Statement statement = DBConnection.connect();
     }
 }
