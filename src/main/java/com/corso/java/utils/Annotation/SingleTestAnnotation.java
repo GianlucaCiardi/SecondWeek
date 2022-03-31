@@ -1,8 +1,15 @@
 package com.corso.java.utils.Annotation;
 
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+
+
+@Target({
+        ElementType.TYPE,
+        ElementType.METHOD,
+        ElementType.FIELD})
 public @interface SingleTestAnnotation {
 
     String item();
-
-    TestAnnotationEnum value();
 }

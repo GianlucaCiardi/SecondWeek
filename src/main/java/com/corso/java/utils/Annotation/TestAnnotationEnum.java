@@ -1,11 +1,10 @@
 package com.corso.java.utils.Annotation;
 
-import com.sun.net.httpserver.Authenticator;
-
-public class TestAnnotationEnum {
-
+public enum TestAnnotationEnum {
 
     SUCCESS,
     FAILED,
     STOPPED,
+    RESUME,
+    RESTART
 }

@@ -20,12 +20,7 @@ public class DBConnection {
     private static PreparedStatement preparedStatement;
     private static LOG L = LOG.getInstance();
 
-    /**
-     * make a connection to db and return a statement
-     * example: Statement statement = DBConnection.connect();
-     * @return
-     * @throws SQLException
-     */
+
     public static Statement connect() throws SQLException {
         try {
             if(statement == null) {

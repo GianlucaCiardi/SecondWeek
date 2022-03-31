@@ -3,7 +3,7 @@ package com.corso.java.utils.Utils;
 public class Singleton {
     public static Singleton instance = null;
 
-    private Singleton(){}
+    Singleton(){}
 
     public static Singleton getInstance() {
         if(instance==null){
