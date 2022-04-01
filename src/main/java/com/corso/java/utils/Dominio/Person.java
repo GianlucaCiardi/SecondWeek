@@ -15,6 +15,7 @@ public class Person {
 
     @Column(length = 30)
     private String LastName;
+
     @Column(length = 30)
     private String Name;
     @OneToMany(
