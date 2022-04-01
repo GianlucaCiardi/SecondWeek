@@ -1,7 +1,7 @@
 package com.corso.java.utils.Annotation;
 
 
-        import com.corso.java.utils.Utils.LOG;
+        import com.corso.java.utils.Utils.Logger;
 
 /**
  * @author: Christian Chiama (c.chiama@silensec.com)
@@ -22,8 +22,8 @@ package com.corso.java.utils.Annotation;
         public static boolean isAnnotationPresents(){
 
         Class test = TestAnnotationClass.class;
-        if(test.isAnnotationPresent(TestAnnotationClass.class)) LOG.getInstance().debug("There is annotation!!!!!");
-        else LOG.getInstance().debug("There is not a annotation!!!!!");
+        if(test.isAnnotationPresent(TestAnnotationClass.class)) Logger.getInstance().debug("There is annotation!!!!!");
+        else Logger.getInstance().debug("There is not a annotation!!!!!");
         return false;
         }
 

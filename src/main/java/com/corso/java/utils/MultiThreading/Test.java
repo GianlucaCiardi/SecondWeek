@@ -1,7 +1,7 @@
 package com.corso.java.utils.MultiThreading;
 
 
-import com.corso.java.utils.Utils.LOG;
+import com.corso.java.utils.Utils.Logger;
 
 public class Test {
 
@@ -9,7 +9,7 @@ public class Test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        LOG L = LOG.getInstance();
+        Logger L = Logger.getInstance();
 
         ThreadNumberPrinter t = new ThreadNumberPrinter(1,10);
         NumberPrinterAsRunnable n = new NumberPrinterAsRunnable(20,30);

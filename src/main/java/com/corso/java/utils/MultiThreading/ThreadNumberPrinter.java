@@ -1,11 +1,11 @@
 package com.corso.java.utils.MultiThreading;
 
-import com.corso.java.utils.Utils.LOG;
+import com.corso.java.utils.Utils.Logger;
 
 
 public class ThreadNumberPrinter extends Thread{
 
-    static LOG L = LOG.getInstance();
+    static Logger L = Logger.getInstance();
     int min;
     int max;
 

@@ -18,15 +18,15 @@ public class DBConnection {
     private static Statement statement;
     private static ResultSet resultSet;
     private static PreparedStatement preparedStatement;
-    private static LOG L = LOG.getInstance();
+    private static Logger L = Logger.getInstance();
 
 
     public static Statement connect() throws SQLException {
         try {
             if(statement == null) {
                 readProperties = new ReadProperties();
-                Class.forName(DBConstant.DB_MYSQL_URL).newInstance();
-                connection = DriverManager.getConnection(DBConstant.DB_URL, DBConstant.DB_USER, DBConstant.DB_PASSWORD);//
+                Class.forName(DBConfig.DB_MYSQL_URL).newInstance();
+                connection = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USER, DBConfig.DB_PASSWORD);//
                 statement = connection.createStatement();
             }else{
                 L.debug("You have invoked more times DBConnection.connect();");
@@ -94,11 +94,11 @@ public class DBConnection {
         DBConnection.preparedStatement = preparedStatement;
     }
 
-    public static LOG getL() {
+    public static Logger getL() {
         return L;
     }
 
-    public static void setL(LOG l) {
+    public static void setL(Logger l) {
         L = l;
     }
 

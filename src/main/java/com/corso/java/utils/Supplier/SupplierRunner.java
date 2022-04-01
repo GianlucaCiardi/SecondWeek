@@ -1,8 +1,8 @@
 package com.corso.java.utils.Supplier;
 
 
-import com.corso.java.utils.Utils.LOG;
-import com.corso.java.utils.Utils.DBConstant;
+import com.corso.java.utils.Utils.Logger;
+import com.corso.java.utils.Utils.DBConfig;
 
 import java.sql.*;
 
@@ -16,15 +16,15 @@ public class SupplierRunner {
 
     private static Connection connection;
     private static Statement statement;
-    private static final LOG L = LOG.getInstance();
+    private static final Logger L = Logger.getInstance();
 
     public static void main(String[] args) throws SQLException {
 
         try {
-            Class.forName(DBConstant.DB_MYSQL_URL).newInstance();
+            Class.forName(DBConfig.DB_MYSQL_URL).newInstance();
 
 
-            connection = DriverManager.getConnection(DBConstant.DB_URL, DBConstant.DB_USER, DBConstant.DB_PASSWORD);
+            connection = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USER, DBConfig.DB_PASSWORD);
             statement = connection.createStatement();
 
             L.debug(connection.getMetaData().getTypeInfo().toString());

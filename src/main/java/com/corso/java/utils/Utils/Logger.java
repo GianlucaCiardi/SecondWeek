@@ -1,31 +1,26 @@
 package com.corso.java.utils.Utils;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
 
 
+public class Logger {
 
-public class LOG {
+    public static final org.apache.log4j.Logger L = org.apache.log4j.Logger.getLogger(Logger.class);
 
-    public static final Logger L = Logger.getLogger(LOG.class);
-
-    public static LOG instance = null;
+    public static Logger instance = null;
 
     {
         BasicConfigurator.configure();
     }
 
-    private LOG() {}
+    private Logger() {}
 
     /**
      * @return instance
      */
-    public static LOG getInstance() {
+    public static Logger getInstance() {
         if (instance == null)
-            synchronized (LOG.class) {
-                instance = new LOG();
+            synchronized (Logger.class) {
+                instance = new Logger();
             }
         return instance;
     }
@@ -60,5 +55,3 @@ public class LOG {
 
 
 }
-
-
